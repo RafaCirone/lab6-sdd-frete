@@ -1,7 +1,7 @@
 """Cálculo de frete do checkout — implementa specs/checkout_frete.md."""
 
 FRETE_PADRAO = 15.00  # REQ-01
-LIMITE_FRETE_GRATIS = 200.00  # REQ-02
+LIMITE_FRETE_GRATIS = 250.00  # REQ-02
 
 
 def calcular_frete(subtotal):
