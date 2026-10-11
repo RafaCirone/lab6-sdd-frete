@@ -36,3 +36,37 @@ Prompt injetado: *"Implemente a funcionalidade de aplicação de cupom de descon
 ### Decisão (human-in-the-loop)
 
 **Rejeitado.** Ação de correção mandatória: remover todo o código de cupom sem especificação, restaurando o alinhamento de 100% com a spec. Cupom só volta ao código depois de existir cláusula EARS para ele.
+
+## 2. Auditoria após a correção
+
+O bloco `frete.py:20-44` foi removido. `src/frete.py` voltou a conter apenas o que REQ-01 e REQ-02 exigem.
+
+### Matriz de rastreabilidade
+
+| Cláusula EARS | Status | Teste Coberto | Arquivo:Linha |
+|---|---|---|---|
+| REQ-01 (Padrão) | Sim | test_frete.py:5, test_frete.py:10 | frete.py:12, frete.py:17 |
+| REQ-02 (Grátis) | Sim | test_frete.py:15, test_frete.py:20, test_frete.py:25 | frete.py:9 |
+| CUPOM (Sem Spec) | Removido | — | — |
+
+Código sem cláusula correspondente: nenhum. Cláusulas sem código ou sem teste: nenhuma.
+
+### Passe de revisão multidimensional
+
+| Dimensão | Resultado | Evidência |
+|---|---|---|
+| Arquitetura | Aprovado | Nenhum import; apenas biblioteca padrão implícita. Duas funções puras. |
+| Performance | Aprovado | Uma comparação e uma soma por chamada; sem loops nem E/S. |
+| Segurança | Aprovado com ressalva | Nenhum `print` nem gravação de dados. Ressalva abaixo. |
+| Observabilidade | Aprovado | Constantes nomeadas e comentários apontando para REQ-01 e REQ-02. |
+
+### Ressalvas encaminhadas ao Product Owner (não implementadas)
+
+Não há cláusula EARS para os pontos abaixo; implementá-los agora seria sobre-implementação.
+
+1. Subtotal negativo ou não numérico não é validado. Requer cláusula de comportamento indesejado na spec.
+2. Valores monetários em `float`. Os casos da spec são exatos, mas somas com centavos podem acumular erro de arredondamento; avaliar `Decimal` em cláusula futura.
+
+### Decisão
+
+**Aprovado.** Sem drift e sem sobre-implementação.
