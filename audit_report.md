@@ -46,8 +46,10 @@ O bloco `frete.py:20-44` foi removido. `src/frete.py` voltou a conter apenas o q
 | Cláusula EARS | Status | Teste Coberto | Arquivo:Linha |
 |---|---|---|---|
 | REQ-01 (Padrão) | Sim | test_frete.py:5, test_frete.py:10 | frete.py:12, frete.py:17 |
-| REQ-02 (Grátis) | Sim | test_frete.py:15, test_frete.py:20, test_frete.py:25 | frete.py:9 |
+| REQ-02 (Grátis) | Sim | test_frete.py:15, test_frete.py:20, test_frete.py:25, test_frete.py:30 | frete.py:4, frete.py:9 |
 | CUPOM (Sem Spec) | Removido | — | — |
+
+Matriz revalidada após a mudança de REQ-02 para R$ 250,00 (Exercício 3), que acrescentou o caso `test_frete.py:30`.
 
 Código sem cláusula correspondente: nenhum. Cláusulas sem código ou sem teste: nenhuma.
 
